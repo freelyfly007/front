@@ -1,0 +1,15 @@
+{"total":28,"rows":[
+	{"productid":"风衣","unitcost":10.00,"status":"1","listprice":36.50,"attr1":"女士风衣","itemid":"EST-1"},
+	{"productid":"西装","unitcost":12.00,"status":"1","listprice":18.50,"attr1":"时尚西装，男士精品","itemid":"EST-10"},
+	{"productid":"牛仔裤","unitcost":12.00,"status":"0","listprice":28.50,"attr1":"美国进口刘仔裤","itemid":"EST-11"},
+	{"productid":"男士皮鞋","unitcost":12.00,"status":"0","listprice":26.50,"attr1":"老人头皮鞋","itemid":"EST-12"},
+	{"productid":"女士长筒靴","unitcost":12.00,"status":"0","listprice":35.50,"attr1":"冬季保暖长筒鞋","itemid":"EST-13"},
+	{"productid":"宝马汽车","unitcost":12.00,"status":"0","listprice":158.50,"attr1":"高档汽车","itemid":"EST-14"},
+	{"productid":"法国红酒","unitcost":12.00,"status":"1","listprice":83.50,"attr1":"法国进口红酒","itemid":"EST-15"},
+	{"productid":"老白干","unitcost":12.00,"status":"1","listprice":63.50,"attr1":"100年珍藏","itemid":"EST-16"},
+	{"productid":"红高粱","unitcost":12.00,"status":"1","listprice":89.50,"attr1":"10元一瓶，一口价","itemid":"EST-17"},
+	{"productid":"汽水","unitcost":92.00,"status":"1","listprice":63.50,"attr1":"甘甜解渴","itemid":"EST-18"}
+],"footer":[
+	{"unitcost":19.80,"listprice":60.40,"productid":"评价价格"},
+	{"unitcost":198.00,"listprice":604.00,"productid":"总价"}
+]}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Dialog - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<style>
+		.dialog-body {
+			padding:10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Basic Dialog</h2>
+	<p>Click below button to open or close dialog.</p>
+	<div style="margin:20px 0;">
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#dlg').dialog('open')">Open</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#dlg').dialog('close')">Close</a>
+	</div>
+	<div id="dlg" class="easyui-dialog" title="弹出框标题" style="width:600px;height:350px;" data-options="modal:true,minimizable:true,maximizable:true,
+	buttons:[{
+				text:'保存',
+				id: 'dialog-save-btn',
+				handler:function(){
+					$('#dlg').dialog('close');
+				}
+			},{
+				text:'取消',
+				id: 'dialog-close-btn',
+				handler:function(){}
+			}]">
+		<div style="padding:10px;">
+			自定义内容
+		</div>
+	</div>
+	
+	<div id="bb">
+		<a href="#" class="easyui-linkbutton">Save</a>
+		<a href="#" class="easyui-linkbutton">Close</a>
+	</div>
+</body>
+</html>

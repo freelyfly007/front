@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<h2>Basic DataGrid</h2>
+	<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+	<div style="margin:20px 0;"></div>
+	<table id="dg" class="easyui-datagrid"></table>
+	<script>
+		$('#dg').datagrid({
+			url: 'datagrid_data3.json',
+			frozenColumns: [[{
+				field: 'ck',
+				checkbox: true
+			}]],
+			toolbar: [{
+				iconCls: 'icon-add',
+				text: '新增',
+				handler: function(){alert('add')}
+			}, {
+				iconCls: 'icon-edit',
+				text: '编辑',
+				handler: function(){alert('edit')}
+			}, {
+				iconCls: 'icon-remove',
+				text: '删除',
+				handler: function() {
+					alert('remove');
+				}
+			}, {
+				iconCls: 'icon-upload',
+				text: '导入',
+				handler: function() {
+					alert('import');
+				}
+			}, {
+				iconCls: 'icon-down',
+				text: '导出',
+				handler: function() {
+					alert('down');
+				}
+			}, {
+				iconCls: 'icon-print',
+				text: '打印',
+				handler: function() {
+					alert('print');
+				}
+			}],
+			fitColumns: true,
+			rownumbers: true,
+			striped:true,
+			striped: true,
+			method: 'get',
+			pagination: true, // 底部显示分页
+			pageList: [ 10, 20, 50 ],
+			showFooter: true,
+			columns: [[
+				{field: 'itemid', width: 80, title: '产品编号'},
+				{field: 'productid', width:100, title: '产品名称'},
+				{field: 'listprice', width: 80, title: '产品单价'},
+				{field: 'unitcost', width: 80, title: '产品数量'},
+				{field: 'attr1', width: 250, title: '产品描述'},
+				{field: 'status', width: 60, title: '状态', align:'center',
+					formatter: function(value, row, index) {
+						var span = '';
+						var statusJson = {1: '在售', 0: '停售'};
+						if (value == '1') {
+							span = '<span style="color:blue;">'+statusJson[value]+'</span>'
+						} else if(value == '0'){
+							span = '<span style="color:#999">'+statusJson[value]+'</span>'
+						}
+						return span;
+					}	
+				}/* ,
+				{
+					field: 'options',
+					width: 200,
+					title: '操作',
+					formatter: function(row, index) {
+						return '<a href="javascript:void(0);" class="dp-cs-btn dp-cs-btn-sm">删除</a>';
+					}
+				} */
+			]]
+		});
+	</script>
+</body>
+</html>

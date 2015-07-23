@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>省市区三级联动控件</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+<!-- 	<script src="../../src/jquery.parser.js"></script>
+	<script src="../../plugins/jquery.panel.js"></script>
+	<script src="../../plugins/jquery.window.js"></script>
+	<script src="../../plugins/jquery.linkbutton.js"></script>
+	<script src="../../plugins/jquery.tooltip.js"></script>
+	<script src="../../plugins/jquery.validatebox.js"></script>
+	<script src="../../plugins/jquery.textbox.js"></script>
+	<script src="../../plugins/jquery.combo.js"></script>
+	<script src="../../src/jquery.combobox.js"></script>
+	<script src="../../src/jquery.area.js"></script> -->
+	<script src="../../src/jquery.area.js"></script>
+	<script src="../../src/jquery.location.js"></script>
+	<script src="../../easyui.config.js"></script>
+	<!-- <script src="../../easyui.config.js"></script> -->
+</head>
+<body>
+	<h2>省市区三级联动控件方案1</h2>
+	<div style="margin:20px 0 10px 0;"></div>
+	
+	<p>省市区三级联动</p>
+	<div id="mylocation1"></div>
+	
+	<p>省市二级联动</p>
+	<div id="mylocation2"></div>
+	
+	<p>只显示省</p>
+	<div id="mylocation3"></div>
+	
+	<p>超区排查（超区不显示在下拉列表中）</p>
+	<div id="mylocation4"></div>
+	
+	<!-- <p>html代码</p>
+	<div class="easyui-location"></div> -->
+	
+	<script>
+		$('#mylocation1').location({
+			valueField: 'code',
+			textField: 'name',
+			provName: 'prov',
+			//editable: false,
+			//disabled: true,
+			//readonly: true,
+			onSelect: function(record) {
+				console.info(record);
+			},
+			onChange: function(newValue, oldValue) {
+				console.info('newValue =====' + newValue);
+			}
+		});
+		
+		$('#mylocation2').location({
+			valueField: 'code',
+			textField: 'name',
+			provName: 'prov',
+			//editable: false,
+			//disabled: true,
+			//readonly: true,
+			showRegion: false,
+			onSelect: function(record) {
+				console.info(record);
+			},
+			onChange: function(newValue, oldValue) {
+				console.info('newValue =====' + newValue);
+			}
+		});
+		
+		$('#mylocation3').location({
+			valueField: 'code',
+			textField: 'name',
+			provName: 'prov',
+			//editable: false,
+			//disabled: true,
+			//readonly: true,
+			showCity: false,
+			onSelect: function(record) {
+				console.info(record);
+			},
+			onChange: function(newValue, oldValue) {
+				console.info('newValue =====' + newValue);
+			}
+		});
+		
+		$('#mylocation4').location({
+			valueField: 'code',
+			textField: 'name',
+			provName: 'prov',
+			//editable: false,
+			//disabled: true,
+			//readonly: true,
+			filterAddress:true,
+			onSelect: function(record) {
+				console.info(record);
+			},
+			onChange: function(newValue, oldValue) {
+				console.info('newValue =====' + newValue);
+			}
+		});
+	</script>
+	<style>
+		.locationBar {
+			/* border:1px solid #ccc; */
+			padding:10px;
+			width:700px;
+		}
+		.locationInfo {
+			margin-bottom: 10px;
+			float:right;
+		}
+		.locationSelected {
+			float:left;
+		}
+		.locationbox {
+			margin-top:36px;
+		}
+		.locationbox .location-address {
+			margin: 0 0 10px 0;
+			float:none;
+		}
+		.location-ok-btn {
+			width:170px;
+		}
+		
+		.locationbox-list dt {
+			float:left;
+			font-weight:bold;
+			color:#999;
+			line-height:22px;
+		}
+		.locationbox-list dd a {
+			color: #333;
+			display: inline-block;
+			margin: 0 7px 0 0;
+			text-decoration: none;
+			line-height:22px;
+		}
+		
+		.locationbox-list dd a:hover {
+			color:#f60;
+			text-decoration: underline;
+		}
+	</style>
+	
+</body>
+</html>

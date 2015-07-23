@@ -1,0 +1,14 @@
+{"result":true, "remark": "", "total": 12, "list":[
+	{"navName":"栏目一", "navUrl": "pages/page1.jsp", "navId": 1, "navWeight":"10", "navParent": "0"},
+	{"navName":"栏目二", "navUrl": "pages/page2.jsp", "navId": 2, "navWeight":"10", "navParent": "0"},
+	{"navName":"栏目三", "navUrl": "pages/page3.jsp", "navId": 3, "navWeight":"10", "navParent": "0"},
+	{"navName":"表格案例", "navUrl": "pages/page4.jsp", "navId": 4, "navWeight":"10", "navParent": "1"},
+	{"navName":"表单案例", "navUrl": "pages/form1.jsp", "navId": 5, "navWeight":"10", "navParent": "1"},
+	{"navName":"子栏目3", "navUrl": "pages/page6.jsp", "navId": 6, "navWeight":"10", "navParent": "1"},
+	{"navName":"子栏目4", "navUrl": "pages/page7.jsp", "navId": 7, "navWeight":"10", "navParent": "2"},
+	{"navName":"子栏目5", "navUrl": "pages/page8.jsp", "navId": 8, "navWeight":"10", "navParent": "2"},
+	{"navName":"子栏目6", "navUrl": "pages/page9.jsp", "navId": 9, "navWeight":"10", "navParent": "2"},
+	{"navName":"子栏目7", "navUrl": "pages/page10.jsp", "navId": 10, "navWeight":"10", "navParent": "2"},
+	{"navName":"子栏目8", "navUrl": "pages/page11.jsp", "navId": 11, "navWeight":"10", "navParent": "2"},
+	{"navName":"子栏目9", "navUrl": "pages/page12.jsp", "navId": 12, "navWeight":"10", "navParent": "2"}
+]}

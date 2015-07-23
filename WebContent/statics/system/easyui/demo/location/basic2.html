@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>省市区三级联动控件</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+<!-- 	<script src="../../src/jquery.parser.js"></script>
+	<script src="../../plugins/jquery.panel.js"></script>
+	<script src="../../plugins/jquery.window.js"></script>
+	<script src="../../plugins/jquery.linkbutton.js"></script>
+	<script src="../../plugins/jquery.tooltip.js"></script>
+	<script src="../../plugins/jquery.validatebox.js"></script>
+	<script src="../../plugins/jquery.textbox.js"></script>
+	<script src="../../plugins/jquery.combo.js"></script>
+	<script src="../../src/jquery.combobox.js"></script>
+	<script src="../../src/jquery.area.js"></script> -->
+	<script src="../../src/jquery.tabs.js"></script>
+	<script src="../../src/jquery.area.js"></script>
+	<script src="../../src/jquery.locationbox.js"></script>
+	<script src="../../easyui.config.js"></script>
+</head>
+<body>
+	<style>
+		c
+	</style>
+	<h2>省市区联动组件，方案2</h2>
+	
+	<div id="myaddress" type="text"></div>
+	<div id="tabs"></div>
+	<script>
+		$(function() {
+			$('#myaddress').locationbox({
+				value: ['410000', '410300', '410302']
+			});
+			
+			//$('#myaddress').locationbox('setValue', ['410000', '410300', '410302']);
+			
+			/* $('#tabs').tabs({}).tabs('add',{   
+			     title:'New Tab'
+			}); */
+		});
+	</script>
+</body>
+</html>

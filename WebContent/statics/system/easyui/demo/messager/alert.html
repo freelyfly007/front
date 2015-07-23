@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Alert Messager - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<h2>Alert Messager</h2>
+	<p>Click on each button to display different alert message box.</p>
+	<div style="margin:20px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="alert2()">Error</a>
+		<a href="#" class="easyui-linkbutton" onclick="alert3()">Info</a>
+		<a href="#" class="easyui-linkbutton" onclick="alert4()">Success</a>
+		<a href="#" class="easyui-linkbutton" onclick="alert5()">Warning</a>
+	</div>
+	<script>
+	
+		(function ($) {
+			$.alert = function (msg, type, time) {
+				type = type || 'info';
+				var title = '';
+				
+				if (type == 'error') {
+					title = '错误'
+				} else if (type == 'warning') {
+					title = '警告'
+				} else if (type == 'success') {
+					title = '成功'
+				} else {
+					title = '系统提醒';
+				}
+				
+				$.messager.alert(title, msg, type);
+				
+				if (type == 'success') {
+					$('.messager-window .messager-body').prepend($('<div class="messager-icon messager-success"></div>'));
+				}
+			}
+		})(jQuery);
+	
+		function alert2(){
+			$.alert('您的操作有误，请重新打开!','error');
+		}
+		function alert3(){
+			$.alert('亲，免费试用产品已寄出.', 'info');
+		}
+		function alert4(){
+			$.alert('您的信息已经提交成功!','success');
+		}
+		function alert5(){
+			$.alert('您的操作有一定的风险，请谨慎操作!','warning');
+		}
+	</script>
+</body>
+</html>

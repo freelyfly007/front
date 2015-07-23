@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic TextBox - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script src="../../easyui.config.js"></script>
+</head>
+<body>
+	<h2>checkbox</h2>
+	<div style="margin:20px 0;"></div>
+	<input class="easyui-checkbox" label="男" type="text" name="sex" value="1" checked="checked" onclick="alert('我被点击了');">
+	<input class="easyui-checkbox" label="男" type="text" name="sex" value="1" checked="checked" disabled="disabled" onclick="alert('我被点击了');">
+	<input class="easyui-checkbox" label="男" type="text" name="sex" value="1" disabled="disabled" onclick="alert('我被点击了');">
+	<input class="easyui-checkbox" label="女" type="text" name="sex" value="0" onclick="alert('我被点击了');">
+	<script>
+		(function($) {
+			
+			function create(target) {
+				var $target = $(target);
+				var opts = $target.checkbox('options');
+				
+				$target.hide();
+				$target.after('<span id="'+opts.id+'" class="checkbox '+opts.className+'"><span class="checkbox-icon"></span><label>'+opts.label+'</label><input type ="checkbox" name="'+opts.name+'" value="'+opts.value+'" style="display:none;"></span>')
+				
+				var $checkbox = $target.next('span.checkbox');
+				setChecked($target, opts.checked);
+				setDisabled($target, opts.disabled);
+				
+				bindEvent($target);
+			}
+			
+			function setChecked($target, checked) {
+				var opts = $target.checkbox('options');
+				var $checkbox = $target.next('span.checkbox');
+				if (checked) {
+					var $radios = $('input[type="checkbox"][name="'+opts.name+'"]').parent().not($checkbox);
+					if (opts.singleSelect) {
+						$radios.each(function() {
+							$(this).removeClass('checkbox-checked').find('input[type="checkbox"]').attr('checked', false);
+						});
+					}
+					$checkbox.addClass('checkbox-checked').find('input[type="checkbox"]').attr('checked', true);
+				} else {
+					$checkbox.removeClass('checkbox-checked').find('input[type="checkbox"]').attr('checked', false);
+				}
+			}
+			
+			function setDisabled($target, disabled) {
+				var $checkbox = $target.next('span.checkbox');
+				if (disabled) {
+					$checkbox.addClass('checkbox-disabled').find('input[type="checkbox"]').attr('disabled', true);
+				} else {
+					$checkbox.removeClass('checkbox-disabled').find('input[type="checkbox"]').attr('disabled', false);
+				}
+			}
+			
+			function toogleChecked($target) {
+				var $checkbox = $target.next('span.checkbox');
+				setChecked($target, !$checkbox.hasClass('checkbox-checked'));
+			}
+			
+			function bindEvent($target) {
+				var $checkbox = $target.next('span.checkbox');
+				var opts = $target.checkbox('options');
+				$checkbox.click(function(e) {
+					if ($(this).hasClass('checkbox-disabled')) return;
+					if (e) e.stopPropagation();
+					toogleChecked($target);
+					
+					if (typeof opts.onclick == 'string') {
+						opts.onclick = new Function(opts.onclick);
+					}
+					opts.onclick.call(this);
+				});
+			}
+			
+			$.fn.checkbox = function(options, param) {
+				if (typeof options == 'string' && options) {
+					var method = $.fn.checkbox.methods[options];
+					if (method) {
+						return method(this, param);
+					}
+				}
+				
+				options = options || {};
+				return this.each(function() {
+					var state = $.data(this, 'checkbox');
+					if (state) {
+						$.extend(state.options, options);
+						create(this);
+					} else {
+						state = $.data(this, 'checkbox', {
+							options: $.extend({}, $.fn.checkbox.defaults, $.fn.checkbox.parseOptions(this), options)
+						});
+						create(this);
+					}
+				});
+			};
+			
+			$.fn.checkbox.parseOptions = function(target){
+				var t = $(target);
+				return $.extend({}, $.parser.parseOptions(target,[
+					'checked', 'disabled', 'label', 'onclick', 'name', 'value'
+				]));
+			};
+			
+			$.fn.checkbox.methods = {
+				options: function(jq) {
+					return $.data(jq[0], 'checkbox').options;
+				},
+				setChecked: function(jq, param) {
+					return setChecked(jq, param);
+				},
+				setDisabled: function(jq, param) {
+					return setDisabled(jq, param);
+				}
+			};
+			
+			$.fn.checkbox.defaults = {
+				checked: false,
+				label: '',
+				id: '',
+				className: '',
+				name: '',
+				value: '',
+				disabled: false,
+				onclick: function(e) {}
+			};
+			
+		})(jQuery);
+	</script>
+</body>
+</html>

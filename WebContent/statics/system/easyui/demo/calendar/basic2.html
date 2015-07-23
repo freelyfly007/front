@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Calendar - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="../../jquery.easyui.min.js"></script> -->
+	<script src="../../src/jquery.parser.js"></script>
+	<script src="../../src/jquery.calendar.js"></script>
+	<!-- <script type="text/javascript" src="../../locale/easyui-lang-zh_CN.js"></script> -->
+	<!-- <script src="../../easyui.config.js"></script> -->
+	<script>
+		if ($.fn.calendar.defaults) {
+			$.fn.calendar.defaults.width = 218;
+			//$.fn.calendar.defaults.height = 258;
+		}
+	</script>
+</head>
+<body>
+	<h2>Basic Calendar</h2>
+	<p>Click to select date.</p>
+	<div style="margin:20px 0"></div>
+	<div class="easyui-calendar" id="mycalendar"></div>
+	
+	<script>
+		$(function() {
+			$('#mycalendar').calendar({
+				max: new Date(),
+				offsetMax: 1,
+				min: '2015-1-3'
+			});
+		});
+	</script>
+	
+</body>
+</html>

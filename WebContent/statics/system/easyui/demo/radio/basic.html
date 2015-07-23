@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic TextBox - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script src="../../easyui.config.js"></script>
+</head>
+<body>
+	<h2>Radio</h2>
+	<div style="margin:20px 0;"></div>
+	<input class="easyui-radiobox" label="男" type="text" name="sex" value="1" checked="checked" onclick="alert('我被点击了');">
+	<input class="easyui-radiobox" label="女" type="text" name="sex" value="0" onclick="alert('我被点击了');">
+	<!-- <input class="easyui-radiobox" checked="checked" label="男" type="text" onclick="alert('我被点击了');">
+	<input class="easyui-radiobox" checked="checked" disabled="disabled" label="男" type="text" onclick="alert('我被点击了');">
+	<input class="easyui-radiobox" disabled="disabled" label="男" type="text" onclick="alert('我被点击了');"> -->
+	<script>
+		(function($) {
+			
+			function create(target) {
+				var $target = $(target);
+				var opts = $target.radiobox('options');
+				
+				$target.hide();
+				$target.after('<span id="'+opts.id+'" class="radio '+opts.className+'"><span class="radio-icon"></span><label>'+opts.label+'</label><input type ="radio" name="'+opts.name+'" value="'+opts.value+'" style="display:none;"></span>')
+				
+				var $radio = $target.next('span.radio');
+				setChecked($target, opts.checked);
+				setDisabled($target, opts.disabled);
+				
+				bindEvent($target);
+			}
+			
+			function setChecked($target, checked) {
+				var opts = $target.radiobox('options');
+				var $radio = $target.next('span.radio');
+				if (checked) {
+					var $radios = $('input[type="radio"][name="'+opts.name+'"]').parent().not($radio);
+					$radios.each(function() {
+						$(this).removeClass('radio-checked').find('input[type="radio"]').attr('checked', false);
+					});
+					$radio.addClass('radio-checked').find('input[type="radio"]').attr('checked', true);
+				} else {
+					$radio.removeClass('radio-checked').find('input[type="radio"]').attr('checked', false);
+				}
+			}
+			
+			function setDisabled($target, disabled) {
+				var $radio = $target.next('span.radio');
+				if (disabled) {
+					$radio.addClass('radio-disabled').find('input[type="radio"]').attr('disabled', true);
+				} else {
+					$radio.removeClass('radio-disabled').find('input[type="radio"]').attr('disabled', false);
+				}
+			}
+			
+			function toogleChecked($target) {
+				var $radio = $target.next('span.radio');
+				setChecked($target, !$radio.hasClass('radio-checked'));
+			}
+			
+			function bindEvent($target) {
+				var $radio = $target.next('span.radio');
+				var opts = $target.radiobox('options');
+				$radio.click(function(e) {
+					if ($(this).hasClass('radio-disabled')) return;
+					if (e) e.stopPropagation();
+					toogleChecked($target);
+					
+					if (typeof opts.onclick == 'string') {
+						opts.onclick = new Function(opts.onclick);
+					}
+					opts.onclick.call(this);
+				});
+			}
+			
+			$.fn.radiobox = function(options, param) {
+				if (typeof options == 'string' && options) {
+					var method = $.fn.radiobox.methods[options];
+					if (method) {
+						return method(this, param);
+					}
+				}
+				
+				options = options || {};
+				return this.each(function() {
+					var state = $.data(this, 'radiobox');
+					if (state) {
+						$.extend(state.options, options);
+						create(this);
+					} else {
+						state = $.data(this, 'radiobox', {
+							options: $.extend({}, $.fn.radiobox.defaults, $.fn.radiobox.parseOptions(this), options)
+						});
+						create(this);
+					}
+				});
+			};
+			
+			$.fn.radiobox.parseOptions = function(target){
+				var t = $(target);
+				return $.extend({}, $.parser.parseOptions(target,[
+					'checked', 'disabled', 'label', 'onclick', 'name', 'value'
+				]));
+			};
+			
+			$.fn.radiobox.methods = {
+				options: function(jq) {
+					return $.data(jq[0], 'radiobox').options;
+				},
+				setChecked: function(jq, param) {
+					return setChecked(jq, param);
+				},
+				setDisabled: function(jq, param) {
+					return setDisabled(jq, param);
+				}
+			};
+			
+			$.fn.radiobox.defaults = {
+				checked: false,
+				label: '',
+				id: '',
+				className: '',
+				name: '',
+				value: '',
+				disabled: false,
+				onclick: function(e) {}
+			};
+			
+		})(jQuery);
+	</script>
+</body>
+</html>
